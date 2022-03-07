@@ -89,11 +89,11 @@ U-Net 모델은 시계열 특성을 띄는 수면파로부터 램수면 파동�
 U-Net 모델을 통해 학습 및 검증한 결과, 자세에 대한 평가와 피드백은 약 88%의 정확도를 보였습니다.
 
 ***
-<img width="70%" src="https://user-images.githubusercontent.com/62477958/157093925-598c5b0d-14c3-4eeb-9f5e-b8d9c6db71f3.gif"/>
+<img width="90%" src="https://user-images.githubusercontent.com/62477958/157093925-598c5b0d-14c3-4eeb-9f5e-b8d9c6db71f3.gif"/>
 
 **a. 앞서 촬영된 동영상**
 
-<img width="70%" src="https://user-images.githubusercontent.com/62477958/157093982-2b769ca6-8ca5-497b-b1c6-faf72096c093.gif"/>
+<img width="90%" src="https://user-images.githubusercontent.com/62477958/157093982-2b769ca6-8ca5-497b-b1c6-faf72096c093.gif"/>
 
 **b. 피드백에 따라 교정 후 촬영한 동영상**
 

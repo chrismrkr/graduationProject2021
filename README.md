@@ -35,5 +35,8 @@
 
 + **프레임 감지 기능(detectPushup)**
 
+<img width="100%" src="https://user-images.githubusercontent.com/62477958/157073502-dc301e39-7ac3-4499-b13b-6e96bb707266.gif"/>
+
+<img width="100%" src="https://user-images.githubusercontent.com/62477958/157073574-938bf746-a1dc-43ea-8ab3-eb58e5d6abe1.gif"/>
 
   

@@ -30,13 +30,32 @@
 
   detectPushUp(inputFilePath, tmpFilePath) // 동영상에서 운동 동작(푸시업)이 나타난 부분(프레임)만 추출한다.
   timeSeriesDataFrame = getTimeSeriesKeyPoint(tmpFilePath) // 추출된 프레임으로 부터 인체 키 포인트 좌표를 추출한다.
-  getJsonResult(outputFilePath) // 추출된 시계열의 키 포인트 좌표들을 조작힌 후, 딥러닝을 통해 피드백 결과를 저장한다. 
+  getJsonResult(timeSeriesDataFrame, outputFilePath) // 추출된 시계열의 키 포인트 좌표들을 조작힌 후, 딥러닝을 통해 피드백 결과를 저장한다. 
 ```
 
 + **프레임 감지 기능(detectPushup)**
 
+프레임 감지 기능의 결과는 아래의 두 gif a와 b를 통해 확인할 수 있습니다.
+***
 <img width="100%" src="https://user-images.githubusercontent.com/62477958/157073502-dc301e39-7ac3-4499-b13b-6e96bb707266.gif"/>
+
+**a. 촬영된 동영상**
+
 
 <img width="100%" src="https://user-images.githubusercontent.com/62477958/157073574-938bf746-a1dc-43ea-8ab3-eb58e5d6abe1.gif"/>
 
-  
+**b. 프레임 감지 기능이 적용된 촬영된 동영상**
+***
+만약, 프로그램 사용자가 본인의 푸시업 자세에 대해 피드백을 받기 위해 동영상을 촬영했다고 가정합니다.
+
+촬영된 동영상(gif a)에는 피드백이 필요한 푸시업 동작 뿐만 아니라 불필요한 부분(ex. 걸어가는 부분, 푸시업 자세를 잡기 위한 준비동작 등)이 포함됩니다.
+
+그러므로, 촬영된 영상으로부터 불필요한 부분을 제거해야 합니다. 이러한 제거 과정을 프레임 감지 기능이 담당합니다.
+
+프레임 감지 기능은 컴퓨터 비젼 라이브러리 OpenCV와 객체 탐지 딥러닝 모델인 YOLOv5를 사용해 구현했습니다.
+
+동영상 내 움직임이 나타나지 않은 프레임 구간을 판정해 제거하기 위해 OpenCV 라이브러리를 활용했고,
+
+푸시업이 나타난 부분을 탐지하기 위해 YOLOv5 모델을 학습시켜 사용했습니다.
+
+

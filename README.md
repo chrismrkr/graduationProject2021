@@ -1,5 +1,5 @@
-### Hongik Univ Graduation Project 2021
-###             딥러닝을 활용한 헬스 자세 교정 프로그램
+### Hongik Univ, Computer Engineering Graduation Project 2021
+### 딥러닝을 활용한 헬스 자세 교정 프로그램
 
 ***
 
@@ -30,7 +30,7 @@
 
   detectPushUp(inputFilePath, tmpFilePath) // 동영상에서 운동 동작(푸시업)이 나타난 부분(프레임)만 추출한다.
   timeSeriesDataFrame = getTimeSeriesKeyPoint(tmpFilePath) // 추출된 프레임으로 부터 인체 키 포인트 좌표를 추출한다.
-  getJsonResult(timeSeriesDataFrame, outputFilePath) // 추출된 시계열의 키 포인트 좌표들을 조작힌 후, 딥러닝을 통해 피드백 결과를 저장한다. 
+  getResult(timeSeriesDataFrame, outputFilePath) // 추출된 시계열의 키 포인트 좌표들을 조작힌 후, 딥러닝을 통해 피드백 결과를 저장한다. 
 ```
 
 + **프레임 감지 기능(detectPushup)**
@@ -60,4 +60,33 @@
 
 푸시업이 나타난 부분을 탐지하기 위해 YOLOv5 모델을 학습시켜 사용했습니다.
 
+
++ **키 포인트 추출 기능(getTimeSeriesKeyPoint)**
+
+추출된 동영상(프레임들)으로부터 인체 키 포인트를 추출합니다. 키 포인트 추출은 OpenPose 라이브러리를 활용했습니다.
+
+(https://learnopencv.com/deep-learning-based-human-pose-estimation-using-opencv-cpp-python/)
+
+추출된 인체 키 포인트 좌표들(ex. 머리, 어깨, 가슴 등)을 이용해 각도 등의 새로운 특성을 생성합니다.
+
+각 프레임마다 인체 키 포인트 좌표를 추출해 새로운 특성을 생성되므로 (프레임 index * 생성된 특성) 형태의 2차원 형태의 배열로 변환됩니다.
+
+새롭게 생성된 배열은 딥러닝을 통해 운동 자세를 평가하기 위해 사용됩니다. 
+
+
++ **자세 평가 기능(getResult)**
+
+마지막 단계에서는 변환된 배열을 딥러닝을 통해 평가합니다. 
+
+다양한 모델은 실험한 후, 결과적으로 딥러닝 모델은 U-Net 모델을 채택했습니다.
+
+U-Net 모델은 시계열 특성을 띄는 수면파로부터 램수면 파동과 같은 수면 패턴을 검출하기 위해 사용되었다는 선행연구가 존재합니다.
+
+인체 키 포인트로 부터 변환된 시계열 배열은 여러 정보를 담을 수 있습니다.
+
+가령, 어떤 배열은 정상적인 푸시업 자세라는 특성을 갖고 있을 수 있고, 또 다른 배열은 허리의 위치나 팔꿈치의 각도가 잘못되었다는 정보를 담을 수 있습니다.
+
+U-Net 모델을 통해 학습 및 검증한 결과, 자세에 대한 평가와 피드백은 약 88%의 정확도를 보였습니다.
+
+***
 

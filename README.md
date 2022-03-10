@@ -9,6 +9,8 @@
 김강옥(b635032_@daum.net)
 오상윤(ossang08@naver.com)
 
+발표영상 링크: https://youtu.be/uDCTQ-HKcKE
+
 ***
 
 + **개발 배경 및 서론**

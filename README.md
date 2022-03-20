@@ -1,5 +1,5 @@
 ### Hongik Univ, Computer Engineering Graduation Project 2021
-### 딥러닝을 활용한 홈  자세 교정 프로그램
+### 딥러닝을 활용한 홈 트레이닝 자세 교정 프로그램
 
 ***
 ### 프로젝트 성과
